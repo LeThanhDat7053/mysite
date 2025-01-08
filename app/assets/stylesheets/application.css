@@ -1,10 +1,650 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 1rem;
+  background-color: #f4f4f4;
+  margin: 0;
+}
+
+.notice {
+  color: green;
+  padding: 1rem;
+  background-color: #dff0d8;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #343a40;
+  color: white;
+  font-size: 1.1em;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+nav a, nav button {
+  text-decoration: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover, nav button:hover {
+  background-color: #007bff;
+}
+
+nav button {
+  background-color: #ff5722;
+  border: none;
+  cursor: pointer;
+}
+
+nav button:hover {
+  background-color: #e64a19;
+}
+
+main {
+  max-width: 1024px;
+  margin: 2rem auto;
+}
+
+section.product {
+  display: flex;
+  gap: 2rem;
+  flex-direction: row;
+  align-items: center;
+  padding: 2rem 1rem;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+section.product img {
+  border-radius: 8px;
+  flex-basis: 50%;
+  max-width: 100%;
+  height: auto;
+}
+
+.product-info {
+  flex-basis: 50%;
+}
+
+.product-info h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.product-info p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #666;
+}
+
+.product-info .price {
+  font-size: 1.2rem;
+  color: #e74c3c;
+  margin-top: 1rem;
+}
+
+button {
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+.btn-cancel, .btn-submit {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-cancel {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn-submit {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: flex-end;
+}
+
+h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.btn-new-product, .btn-login {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-new-product {
+  background-color: #4caf50;
+  color: white;
+  margin-right: 1rem;
+}
+
+.btn-login {
+  background-color: #2196f3;
+  color: white;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+#products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.product-item {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.product-item:hover {
+  transform: translateY(-5px);
+}
+
+.product-link {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.product-link:hover {
+  color: #007bff;
+}
+
+.actions .btn-login {
+  padding: 0.75rem 1.5rem;
+  font-size: 1em;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  background-color: #007bff;
+  color: white;
+}
+
+.actions .btn-login:hover {
+  background-color: #0056b3;
+}
+
+.actions .btn-new-product {
+  padding: 0.75rem 1.5rem;
+  font-size: 1em;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  background-color: #4CAF50;
+  color: white;
+}
+
+.actions .btn-new-product:hover {
+  background-color: #45a049;
+}
+
+.form-actions {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-actions .btn-cancel {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #f44336;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.form-actions .btn-cancel:hover {
+  background-color: #d32f2f;
+}
+
+.form-input input, .form-input textarea {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.form-input input:focus, .form-input textarea:focus {
+  border-color: #00796b;
+}
+
+.product-form {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-control, .form-control-file {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus, .form-control-file:focus {
+  border-color: #00796b;
+}
+
+.btn-submit {
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #388e3c;
+}
+
+.form-control-file {
+  padding: 0.5rem;
+  background-color: #f0f0f0;
+}
+
+.form-actions {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+section.inventory {
+  padding: 1rem;
+  margin-top: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+section.inventory p {
+  font-size: 1.1em;
+  margin-bottom: 1rem;
+}
+
+section.inventory form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+section.inventory input[type="email"] {
+  padding: 0.75rem;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+section.inventory input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.75rem;
+  font-size: 1em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+section.inventory input[type="submit"]:hover {
+  background-color: #45a049;
+}
+/* Nút Back */
+.btn-back {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  background-color: #f39c12;
+  color: white;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.btn-back:hover {
+  background-color: #e67e22;
+}
+
+/* Nút Edit */
+.btn-edit {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  background-color: #3498db;
+  color: white;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.btn-edit:hover {
+  background-color: #2980b9;
+}
+
+/* Nút Delete */
+.btn-delete {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.btn-delete:hover {
+  background-color: #c0392b;
+}
+.fixed-image {
+  width: 100%;      /* Đảm bảo ảnh không vượt quá chiều rộng của phần chứa */
+  height: auto;     /* Giữ tỷ lệ của ảnh */
+  max-width: 100%;  /* Cố định chiều rộng ảnh */
+  max-height: 300px; /* Tùy chỉnh chiều cao tối đa cho ảnh (có thể điều chỉnh theo nhu cầu) */
+  object-fit: contain; /* Đảm bảo ảnh không bị cắt xén và giữ nguyên tỷ lệ */
+}
+form1 {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Trường nhập liệu Mật khẩu */
+.form1 input[type="password"] {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+/* Trường nhập liệu khi có focus */
+.form1 input[type="password"]:focus {
+  border-color: #00796b;
+  outline: none;
+}
+
+/* Nút Submit */
+.form1 input[type="submit"] {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+/* Nút Submit khi hover */
+.form1 input[type="submit"]:hover {
+  background-color: #388e3c;
+}
+
+/* Thông báo lỗi */
+.flash-alert {
+  color: red;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: bold;
+}
+.form-login-2 {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Trường nhập liệu cho email và mật khẩu */
+.form-login-2 input[type="email"], 
+.form-login-2 input[type="password"] {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+/* Trường nhập liệu khi có focus */
+.form-login-2 input[type="email"]:focus,
+.form-login-2 input[type="password"]:focus {
+  border-color: #00796b;
+  outline: none;
+}
+
+/* Nút submit cho form đăng nhập */
+.form-login-2 input[type="submit"] {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+/* Nút submit khi hover */
+.form-login-2 input[type="submit"]:hover {
+  background-color: #388e3c;
+}
+
+.btn-forgot-password {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  background-color: #3498db; /* Màu nền giống các nút button */
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+/* Nút khi hover giống button */
+.btn-forgot-password:hover {
+  background-color: #2980b9; /* Màu khi hover giống button */
+  transform: scale(1.05);  /* Làm nút to ra một chút khi hover */
+}
+
+.form-login-2 a {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  background-color: #3498db; /* Màu nền giống các nút */
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-weight: 500;
+  margin-top: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+/* Nút khi hover giống các nút */
+.form-login-2 a:hover {
+  background-color: #2980b9; /* Màu khi hover giống các nút */
+  transform: scale(1.05);  /* Làm chữ to ra một chút khi hover */
+}
+/* Thông báo lỗi */
+.flash-alert {
+  color: red;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Thông báo thành công */
+.flash-notice {
+  color: green;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: bold;
+}
+/* Đặt toàn bộ form ở giữa trang */
+.form-signup {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề form */
+.form-title-4 h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Định dạng các trường nhập liệu */
+.form-input-4 {
+  margin-bottom: 15px;
+}
+
+.form-input-4 .form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.form-input-4 .form-control:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Định dạng nút submit */
+.form-actions-4 {
+  text-align: center;
+}
+
+.form-actions-4 .btn-submit {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form-actions-4 .btn-submit:hover {
+  background-color: #0056b3;
+}
+
+/* Liên kết đăng nhập */
+.link-sign-in-4 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.link-sign-in-4 a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.link-sign-in-4 a:hover {
+  text-decoration: underline;
+}

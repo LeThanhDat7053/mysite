@@ -1,11 +1,14 @@
-<h1>Products</h1>
+<h1><%= t "Product" %></h1>
 
-<%= link_to "New product", new_product_path %>
+<div class="actions">
+  <%= link_to "Login", new_session_path, class: "btn-login" unless authenticated? %>
+  <%= link_to "New product", new_product_path, class: "btn-new-product" if authenticated? %>
+</div>
 
 <div id="products">
   <% @products.each do |product| %>
-    <div>
-      <%= link_to product.name, product %>
+    <div class="product-item">
+      <%= link_to product.name, product, class: "product-link" %>
     </div>
   <% end %>
 </div>

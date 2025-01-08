@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Mysite" %></title>
+    <title><%= content_for(:title) || "LeThanhDat" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -23,6 +23,14 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="notice"><%= notice %></div>
+    <nav>
+      <%= link_to "Home", root_path %>
+      <%= button_to "Log out", session_path, method: :delete if authenticated? %>
+    </nav>
+
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
