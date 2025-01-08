@@ -15,6 +15,12 @@ jobs:
       - name: Set execute permissions for brakeman
         run: chmod +x bin/brakeman  # Cấp quyền thực thi cho tệp brakeman
 
+      - name: Set execute permissions for rails
+        run: chmod +x bin/rails
+
+      - name: Set execute permissions for rubocop
+        run: chmod +x bin/rubocop
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
