@@ -10,5 +10,4 @@ class User < ApplicationRecord
     save!
     self.password_reset_token
   end
-
 end
