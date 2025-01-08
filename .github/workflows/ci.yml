@@ -12,14 +12,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set execute permissions for brakeman
-        run: chmod +x bin/brakeman
-
-      - name: Set execute permissions for rails
-        run: chmod +x bin/rails
-
-      - name: Set execute permissions for rubocop
-        run: chmod +x bin/rubocop
+      - name: Set execute permissions for all scripts in bin/
+        run: chmod +x bin/*  # Cấp quyền thực thi cho tất cả tệp trong thư mục bin/
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -45,8 +39,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set execute permissions for importmap
-        run: chmod +x bin/importmap
+      - name: Set execute permissions for all scripts in bin/
+        run: chmod +x bin/*  # Cấp quyền thực thi cho tất cả tệp trong thư mục bin/
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -63,8 +57,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set execute permissions for rubocop
-        run: chmod +x bin/rubocop
+      - name: Set execute permissions for all scripts in bin/
+        run: chmod +x bin/*  # Cấp quyền thực thi cho tất cả tệp trong thư mục bin/
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -94,6 +88,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set execute permissions for all scripts in bin/
+        run: chmod +x bin/*  # Cấp quyền thực thi cho tất cả tệp trong thư mục bin/
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -108,9 +105,6 @@ jobs:
 
       - name: Run database setup
         run: bin/rails db:create db:migrate  # Tạo và di chuyển cơ sở dữ liệu
-
-      - name: Set execute permissions for bin/rails
-        run: chmod +x bin/rails  # Cấp quyền thực thi cho bin/rails
 
       - name: Check bin/ directory permissions (again)
         run: ls -l bin/  # Kiểm tra lại quyền thực thi cho các tệp trong thư mục bin
@@ -131,4 +125,3 @@ jobs:
           name: screenshots
           path: ${{ github.workspace }}/tmp/screenshots
           if-no-files-found: ignore
-  
