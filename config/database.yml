@@ -35,7 +35,7 @@ test:
   database: mysite_test
   pool: 5
   username: postgres
-  password: "123"  # Mật khẩu phải là '123'
+  password: "123"  # Phải khớp với POSTGRES_PASSWORD
   host: localhost
 
 production:
