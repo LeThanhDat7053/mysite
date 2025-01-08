@@ -115,7 +115,7 @@ jobs:
       - name: Run tests
       env:
         RAILS_ENV: test
-        DATABASE_URL: postgres://postgres:123@localhost:5432  # Thay mật khẩu này thành '123' tương ứng
+        DATABASE_URL: postgres://postgres:123@localhost:5432/mysite_test  # Thay mật khẩu này thành '123' tương ứng
       run: bin/rails db:test:prepare test test:system  # Chạy kiểm tra hệ thốngạy kiểm tra hệ thống
 
       - name: Keep screenshots from failed system tests

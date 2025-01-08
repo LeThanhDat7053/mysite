@@ -30,8 +30,13 @@ development:
   host: localhost
 
 test:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
   database: mysite_test
+  pool: 5
+  username: postgres
+  password: "123"  # Mật khẩu phải là '123'
+  host: localhost
 
 production:
   primary: &primary_production
