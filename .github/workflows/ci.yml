@@ -12,32 +12,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set execute permissions for brakeman
-        run: chmod +x bin/brakeman  # Cấp quyền thực thi cho tệp brakeman
-
-      - name: Set execute permissions for rails
-        run: chmod +x bin/rails
-
-      - name: Set execute permissions for rubocop
-        run: chmod +x bin/rubocop
+      - name: Set execute permissions for all bin files
+        run: chmod +x bin/*  # Cấp quyền thực thi cho tất cả các tệp trong thư mục bin
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
+          ruby-version: .ruby-version  # Sử dụng phiên bản Ruby từ file .ruby-version
           bundler-cache: true
 
       - name: Install dependencies
-        run: gem install brakeman
+        run: bundle install  # Cài đặt phụ thuộc thông qua Bundler
 
       - name: Run Brakeman
-        run: bin/brakeman --no-pager
-
-      - name: Set execute permissions for brakeman and other bin files
-        run: chmod +x bin/*
-
-      - name: Scan for common Rails security vulnerabilities using static analysis
-        run: bin/brakeman --no-pager
+        run: bin/brakeman --no-pager  # Quét bảo mật Rails
 
   scan_js:
     runs-on: ubuntu-latest
@@ -55,7 +43,7 @@ jobs:
           bundler-cache: true
 
       - name: Scan for security vulnerabilities in JavaScript dependencies
-        run: bin/importmap audit
+        run: bin/importmap audit  # Quét bảo mật cho JavaScript
 
   lint:
     runs-on: ubuntu-latest
@@ -73,7 +61,7 @@ jobs:
           bundler-cache: true
 
       - name: Lint code for consistent style
-        run: bin/rubocop -f github
+        run: bin/rubocop -f github  # Kiểm tra mã nguồn theo quy tắc RuboCop
 
   test:
     runs-on: ubuntu-latest
@@ -101,22 +89,22 @@ jobs:
           bundler-cache: true
 
       - name: Install dependencies
-        run: gem install brakeman
+        run: bundle install  # Cài đặt tất cả phụ thuộc
 
       - name: Run database setup
-        run: bin/rails db:create db:migrate
+        run: bin/rails db:create db:migrate  # Tạo và di chuyển cơ sở dữ liệu
 
       - name: Run tests
-        run: bin/rails test
+        run: bin/rails test  # Chạy các bài kiểm tra
 
       - name: Set execute permissions for bin/rails
-        run: chmod +x bin/rails
+        run: chmod +x bin/rails  # Cấp quyền thực thi cho tệp rails
 
       - name: Run tests
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
-        run: bin/rails db:test:prepare test test:system
+        run: bin/rails db:test:prepare test test:system  # Chạy kiểm tra hệ thống
 
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4
