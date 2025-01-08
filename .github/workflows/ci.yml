@@ -20,6 +20,9 @@ jobs:
 
       - name: Install brakeman
         run: gem install brakeman
+        
+      - name: Run Brakeman
+        run: bin/brakeman --no-pager
 
       - name: Set execute permissions for brakeman and other bin files
         run: chmod +x bin/*
