@@ -12,15 +12,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set execute permissions for brakeman
+        run: chmod +x bin/brakeman  # Cấp quyền thực thi cho tệp brakeman
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: Install brakeman
+      - name: Install dependencies
         run: gem install brakeman
-        
+
       - name: Run Brakeman
         run: bin/brakeman --no-pager
 
@@ -90,6 +93,15 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
+
+      - name: Install dependencies
+        run: gem install brakeman
+
+      - name: Run database setup
+        run: bin/rails db:create db:migrate
+
+      - name: Run tests
+        run: bin/rails test
 
       - name: Set execute permissions for bin/rails
         run: chmod +x bin/rails
