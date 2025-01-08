@@ -12,20 +12,32 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set execute permissions for all bin files
-        run: chmod +x bin/*  # Cấp quyền thực thi cho tất cả các tệp trong thư mục bin
+      - name: Set execute permissions for brakeman
+        run: chmod +x bin/brakeman
+
+      - name: Set execute permissions for rails
+        run: chmod +x bin/rails
+
+      - name: Set execute permissions for rubocop
+        run: chmod +x bin/rubocop
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version  # Sử dụng phiên bản Ruby từ file .ruby-version
+          ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Verify Ruby installation
+        run: ruby -v  # Kiểm tra phiên bản Ruby
+
       - name: Install dependencies
-        run: bundle install  # Cài đặt phụ thuộc thông qua Bundler
+        run: bundle install  # Cài đặt gem cần thiết
 
       - name: Run Brakeman
         run: bin/brakeman --no-pager  # Quét bảo mật Rails
+
+      - name: Check bin/ directory permissions
+        run: ls -l bin/  # Kiểm tra quyền thực thi cho các tệp trong thư mục bin
 
   scan_js:
     runs-on: ubuntu-latest
@@ -89,16 +101,22 @@ jobs:
           bundler-cache: true
 
       - name: Install dependencies
-        run: bundle install  # Cài đặt tất cả phụ thuộc
+        run: bundle install  # Cài đặt gem cần thiết
+
+      - name: Verify Ruby installation
+        run: ruby -v  # Kiểm tra phiên bản Ruby
 
       - name: Run database setup
         run: bin/rails db:create db:migrate  # Tạo và di chuyển cơ sở dữ liệu
 
+      - name: Set execute permissions for bin/rails
+        run: chmod +x bin/rails  # Cấp quyền thực thi cho bin/rails
+
+      - name: Check bin/ directory permissions (again)
+        run: ls -l bin/  # Kiểm tra lại quyền thực thi cho các tệp trong thư mục bin
+
       - name: Run tests
         run: bin/rails test  # Chạy các bài kiểm tra
-
-      - name: Set execute permissions for bin/rails
-        run: chmod +x bin/rails  # Cấp quyền thực thi cho tệp rails
 
       - name: Run tests
         env:
@@ -113,3 +131,4 @@ jobs:
           name: screenshots
           path: ${{ github.workspace }}/tmp/screenshots
           if-no-files-found: ignore
+  
