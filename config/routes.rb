@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   # Route đăng ký người dùng
-  get "sign_up", to: "users#new", as: "new_user_registration" # Đường dẫn cho trang đăng ký
-  post "users", to: "users#create", as: "users"               # Route tạo người dùng
-
+  get "registrations/new", to: "registrations#new", as: "registrations_new"
+  post "registrations", to: "registrations#create", as: "registrations_create"
   # Các route khác
   resource :session
   resources :passwords, param: :token
@@ -23,5 +22,6 @@ Rails.application.routes.draw do
   end
 
   resource :unsubscribe, only: [ :show ]
-  resources :users, only: [ :new, :create ]
+  resources :registrations, only: [:new, :create]
+  resources :users
 end
