@@ -26,7 +26,7 @@ development:
   database: mysite_development
   pool: 5
   username: postgres
-  password: "123" 
+  password: "123"  # Đảm bảo mật khẩu này khớp với mật khẩu trong ci.yml
   host: localhost
 
 test:

@@ -76,7 +76,7 @@ jobs:
         image: postgres
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_PASSWORD: 123  # Thay mật khẩu này cho trùng với mật khẩu trong config/database.yml
         ports:
           - 5432:5432
         options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -113,10 +113,10 @@ jobs:
         run: bin/rails test  # Chạy các bài kiểm tra
 
       - name: Run tests
-        env:
-          RAILS_ENV: test
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432
-        run: bin/rails db:test:prepare test test:system  # Chạy kiểm tra hệ thống
+      env:
+        RAILS_ENV: test
+        DATABASE_URL: postgres://postgres:123@localhost:5432  # Thay mật khẩu này thành '123' tương ứng
+      run: bin/rails db:test:prepare test test:system  # Chạy kiểm tra hệ thốngạy kiểm tra hệ thống
 
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4
