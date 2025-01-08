@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  # Route đăng ký người dùng
-  get "registrations/new", to: "registrations#new", as: "registrations_new"
-  post "registrations", to: "registrations#create", as: "registrations_create"
+  # Trang đăng ký người dùng
+  resources :users, only: [:new, :create]  # Đã bao gồm action new và create cho users
+
   # Các route khác
   resource :session
   resources :passwords, param: :token
