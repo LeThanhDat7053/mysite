@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set execute permissions for all scripts in bin/
-        run: chmod +x bin/*
+        run: chmod +x bin/*  # Cấp quyền thực thi cho tất cả tệp trong thư mục bin/
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -22,16 +22,16 @@ jobs:
           bundler-cache: true
 
       - name: Verify Ruby installation
-        run: ruby -v
+        run: ruby -v  # Kiểm tra phiên bản Ruby
 
       - name: Install dependencies
-        run: bundle install
+        run: bundle install  # Cài đặt gem cần thiết
 
       - name: Run Brakeman
-        run: bin/brakeman --no-pager
+        run: bin/brakeman --no-pager  # Quét bảo mật Rails
 
       - name: Check bin/ directory permissions
-        run: ls -l bin/
+        run: ls -l bin/  # Kiểm tra quyền thực thi cho các tệp trong thư mục bin
 
   scan_js:
     runs-on: ubuntu-latest
@@ -40,7 +40,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set execute permissions for all scripts in bin/
-        run: chmod +x bin/*
+        run: chmod +x bin/*  # Cấp quyền thực thi cho tất cả tệp trong thư mục bin/
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -49,7 +49,7 @@ jobs:
           bundler-cache: true
 
       - name: Scan for security vulnerabilities in JavaScript dependencies
-        run: bin/importmap audit
+        run: bin/importmap audit  # Quét bảo mật cho JavaScript
 
   lint:
     runs-on: ubuntu-latest
@@ -58,7 +58,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set execute permissions for all scripts in bin/
-        run: chmod +x bin/*
+        run: chmod +x bin/*  # Cấp quyền thực thi cho tất cả tệp trong thư mục bin/
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -67,7 +67,7 @@ jobs:
           bundler-cache: true
 
       - name: Lint code for consistent style
-        run: bin/rubocop -f github
+        run: bin/rubocop -f github  # Kiểm tra mã nguồn theo quy tắc RuboCop
 
   test:
     runs-on: ubuntu-latest
@@ -76,7 +76,7 @@ jobs:
         image: postgres
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: 123
+          POSTGRES_PASSWORD: 123  # Thay mật khẩu này cho trùng với mật khẩu trong config/database.yml
         ports:
           - 5432:5432
         options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -89,7 +89,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set execute permissions for all scripts in bin/
-        run: chmod +x bin/*
+        run: chmod +x bin/*  # Cấp quyền thực thi cho tất cả tệp trong thư mục bin/
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -98,33 +98,25 @@ jobs:
           bundler-cache: true
 
       - name: Install dependencies
-        run: bundle install
-
-      - name: Wait for PostgreSQL to be ready
-        run: |
-          until pg_isready -h localhost -p 5432; do
-            echo "Waiting for PostgreSQL to be ready..."
-            sleep 2
-          done  
+        run: bundle install  # Cài đặt gem cần thiết
 
       - name: Verify Ruby installation
-        run: ruby -v
+        run: ruby -v  # Kiểm tra phiên bản Ruby
 
       - name: Run database setup
-        run: bin/rails db:create db:migrate
+        run: bin/rails db:create db:migrate  # Tạo và di chuyển cơ sở dữ liệu
 
-      - name: Wait for PostgreSQL to be ready
-        run: |
-          until pg_isready -h localhost -p 5432; do
-            echo "Waiting for PostgreSQL to be ready..."
-            sleep 2
-          done
+      - name: Check bin/ directory permissions (again)
+        run: ls -l bin/  # Kiểm tra lại quyền thực thi cho các tệp trong thư mục bin
 
       - name: Run tests
-        env:
-          RAILS_ENV: test
-          DATABASE_URL: "postgresql://postgres:123@localhost:5432/mysite_test"
-        run: bin/rails db:test:prepare test test:system
+        run: bin/rails test  # Chạy các bài kiểm tra
+
+      - name: Run tests
+      env:
+        RAILS_ENV: test
+        DATABASE_URL: "postgres://postgres:123@localhost:5432/mysite_test"
+      run: bin/rails db:test:prepare test test:system  # Chạy kiểm tra hệ thốngạy kiểm tra hệ thống
 
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4
