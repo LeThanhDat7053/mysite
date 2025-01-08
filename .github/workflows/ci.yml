@@ -21,8 +21,8 @@ jobs:
       - name: Install brakeman
         run: gem install brakeman
 
-      - name: Set execute permissions for brakeman
-        run: chmod +x bin/brakeman
+      - name: Set execute permissions for brakeman and other bin files
+        run: chmod +x bin/*
 
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
@@ -87,6 +87,9 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
+
+      - name: Set execute permissions for bin/rails
+        run: chmod +x bin/rails
 
       - name: Run tests
         env:
