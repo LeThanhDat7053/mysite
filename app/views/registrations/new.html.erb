@@ -12,7 +12,7 @@
   </div>
 
   <div class="form-input-4">
-    <%= form.email_field :email, required: true, placeholder: "Email", class: "form-control" %>
+    <%= form.text_field :email_address, required: true, placeholder: "Email", class: "form-control" %>
   </div>
 
   <div class="form-input-4">
@@ -23,7 +23,5 @@
     <%= form.submit "Sign Up", class: "btn-submit" %>
   </div>
 
-  <div class="link-sign-in-4">
-    <%= link_to 'Already have an account? Sign in', new_session_path %>
-  </div>
+  
 <% end %>
